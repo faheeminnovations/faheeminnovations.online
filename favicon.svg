@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Faheem Innovations">
+  <rect width="64" height="64" rx="16" fill="#0A0E1A"/>
+  <path d="M42 13H25c-7 0-12 5-12 12s5 12 12 12h12" fill="none" stroke="#A5B4FC" stroke-width="7" stroke-linecap="round"/>
+  <path d="M20 25h20M20 39h13" fill="none" stroke="#22D3EE" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="46" cy="47" r="6" fill="#EC4899"/>
+</svg>

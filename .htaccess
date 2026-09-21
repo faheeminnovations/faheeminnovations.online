@@ -1,0 +1,58 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /faheeminnovations.online/
+
+    # The shared brand favicon is served from the website root for every host.
+    RewriteRule ^favicon\.svg$ - [L]
+
+    # Route the three production subdomains to their standalone tool folders.
+    RewriteCond %{HTTP_HOST} ^ai-speech-text\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/speech-text-ai(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/speech-text-ai/$1 [L]
+
+    RewriteCond %{HTTP_HOST} ^ai-speech-to-text\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/speech-text-ai(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/speech-text-ai/$1 [L]
+
+    RewriteCond %{HTTP_HOST} ^ai-text-to-speech\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/text-to-speech(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/text-to-speech/$1 [L]
+
+    RewriteCond %{HTTP_HOST} ^ai-document-summariser\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/document-summariser-ai(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/document-summariser-ai/$1 [L]
+
+    RewriteCond %{HTTP_HOST} ^ai-image-to-text\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/image-to-text(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/image-to-text/$1 [L]
+
+    RewriteCond %{HTTP_HOST} ^ai-text-to-image\.faheeminnovations\.online$ [NC]
+    RewriteCond %{REQUEST_URI} !/ai-tools/text-to-image(?:/|$) [NC]
+    RewriteRule ^(.*)$ ai-tools/text-to-image/$1 [L]
+
+    # Keep the requested localhost-friendly AI paths available as aliases.
+    RewriteRule ^ai-document-summariser/?$ ai-tools/document-summariser-ai/index.php [NC,L]
+    RewriteRule ^ai-image-to-text/?$ ai-tools/image-to-text/index.php [NC,L]
+    RewriteRule ^ai-text-to-speech/?$ ai-tools/text-to-speech/index.php [NC,L]
+    RewriteRule ^ai-text-to-image/?$ ai-tools/text-to-image/index.php [NC,L]
+    RewriteRule ^ai-speech-text/?$ ai-tools/speech-text-ai/index.php [NC,L]
+    RewriteRule ^ai-speech-to-text/?$ ai-tools/speech-text-ai/index.php [NC,L]
+
+    # Preserve the old folder-style URLs after the AI tools are separated.
+    RewriteRule ^document-summariser-ai/?$ ai-tools/document-summariser-ai/index.php [NC,L]
+    RewriteRule ^image-to-text/?$ ai-tools/image-to-text/index.php [NC,L]
+    RewriteRule ^text-to-speech/?$ ai-tools/text-to-speech/index.php [NC,L]
+    RewriteRule ^text-to-image/?$ ai-tools/text-to-image/index.php [NC,L]
+    RewriteRule ^speech-text-ai/?$ ai-tools/speech-text-ai/index.php [NC,L]
+
+    RewriteRule ^speech-text-ai/(como-funciona|recursos|casos|precos)/?$ ai-tools/speech-text-ai/index.php?section=$1 [NC,L,QSA]
+    RewriteRule ^document-summariser-ai/(.*)$ ai-tools/document-summariser-ai/$1 [NC,L]
+    RewriteRule ^image-to-text/(.*)$ ai-tools/image-to-text/$1 [NC,L]
+    RewriteRule ^text-to-speech/(.*)$ ai-tools/text-to-speech/$1 [NC,L]
+    RewriteRule ^text-to-image/(.*)$ ai-tools/text-to-image/$1 [NC,L]
+    RewriteRule ^speech-text-ai/(.*)$ ai-tools/speech-text-ai/$1 [NC,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(tools|services|process|contact|faq)/?$ index.html [L]
+</IfModule>

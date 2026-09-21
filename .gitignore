@@ -1,0 +1,26 @@
+.DS_Store
+*.log
+
+# Laravel environment and runtime files
+admin-panel/.env
+admin-panel/.env.*
+!admin-panel/.env.example
+admin-panel/database/*.sqlite
+admin-panel/database/*.sqlite-journal
+admin-panel/storage/*.key
+admin-panel/storage/app/*
+admin-panel/storage/framework/cache/*
+admin-panel/storage/framework/sessions/*
+admin-panel/storage/framework/testing/*
+admin-panel/storage/framework/views/*
+admin-panel/storage/logs/*
+admin-panel/bootstrap/cache/*
+admin-panel/vendor/
+admin-panel/node_modules/
+admin-panel/public/build/
+admin-panel/public/hot
+admin-panel/public/storage
+
+# Local editor and OS files
+.vscode/
+.idea/
