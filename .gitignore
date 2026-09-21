@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 .DS_Store
 *.log
+
+# Laravel environment and runtime files
+admin-panel/.env
+!admin-panel/.env.example
+admin-panel/database/*.sqlite
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+admin-panel/vendor/
+admin-panel/node_modules/
+admin-panel/public/build/
+admin-panel/public/hot
+admin-panel/public/storage
 
 # Laravel environment and runtime files
 admin-panel/.env
@@ -15,12 +30,23 @@ admin-panel/storage/framework/testing/*
 admin-panel/storage/framework/views/*
 admin-panel/storage/logs/*
 admin-panel/bootstrap/cache/*
-admin-panel/vendor/
-admin-panel/node_modules/
-admin-panel/public/build/
-admin-panel/public/hot
-admin-panel/public/storage
 
-# Local editor and OS files
+# Laravel defaults
+
+# Laravel 5 & Lumen specific with changed public path
+
+storage/*.key
+Homestead.json
+/.vagrant
+
+/.env
+/public/build
+/storage/pail
+.env.backup
+.env.production
+.phpactor.json
+auth.json
+
+# Local editor files
 .vscode/
 .idea/
