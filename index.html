@@ -138,6 +138,7 @@
   .nav { display: flex; align-items: center; gap: 1.6rem; }
   .nav a.nav-link { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
   .nav a.nav-link:hover { color: var(--teal); text-decoration: underline; }
+  .nav a.nav-link[aria-current="page"] { color: var(--teal); text-decoration: underline; text-underline-offset: .35rem; }
   .bar-actions { display: flex; align-items: center; gap: .6rem; }
   .icon-btn {
     width: 2.5rem; height: 2.5rem; border-radius: 50%;
@@ -508,7 +509,7 @@
         <p>Cada ferramenta funciona no seu próprio endereço para abrir rapidamente e permanecer separada deste site.</p>
       </div>
       <div class="tools" id="toolsGrid"></div>
-      <p class="tools-note">Precisa de uma ferramenta para a sua empresa? <a href="#contact">Conte-nos o que precisa</a>.</p>
+      <p class="tools-note">Precisa de uma ferramenta para a sua empresa? <a href="/faheeminnovations.online/contact">Conte-nos o que precisa</a>.</p>
     </div>
   </section>
 
@@ -1114,12 +1115,20 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 (function pageRoute() {
   const pages = { "/tools": "tools", "/services": "services", "/process": "process", "/contact": "contact", "/faq": "faq" };
-  const page = pages["/" + window.location.pathname.replace(/^\/faheeminnovations\.online\/?|\/$/g, "")];
-  if (!page) return;
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const projectPath = "/faheeminnovations.online";
+  const route = path === projectPath ? "/" : path.startsWith(projectPath + "/") ? path.slice(projectPath.length) : path;
+  const page = pages[route];
   const main = document.getElementById("main");
-  [...main.children].forEach(section => {
-    section.hidden = section.id !== page;
-  });
+  if (page) {
+    [...main.children].forEach(section => { section.hidden = section.id !== page; });
+    document.querySelectorAll(".nav-link").forEach(link => {
+      const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/+$/, "");
+      const active = linkPath.endsWith(route);
+      if (active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
 })();
 
 </script>
