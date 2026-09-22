@@ -1088,7 +1088,7 @@ CONTENT_READY.then(() => { (function toolsDirectory() {
 })(); });
 
 /* ---------- Scroll motion ---------- */
-CONTENT_READY.finally(() => {
+function initScrollMotion() {
   if (reduceMotion) return;
   document.documentElement.classList.add("js-motion");
   const targets = document.querySelectorAll(".hero, .block-head, .tools, .catalog, .steps, .table-scroll, .split, .faq, .contact");
@@ -1109,7 +1109,8 @@ CONTENT_READY.finally(() => {
     if (observer) observer.observe(target);
     else target.classList.add("is-visible");
   });
-})();
+}
+CONTENT_READY.then(initScrollMotion, initScrollMotion);
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
