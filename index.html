@@ -1116,19 +1116,19 @@ document.getElementById("year").textContent = new Date().getFullYear();
 (function pageRoute() {
   const pages = { "/tools": "tools", "/services": "services", "/process": "process", "/contact": "contact", "/faq": "faq" };
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
-  const projectPath = "/faheeminnovations.online";
-  const route = path === projectPath ? "/" : path.startsWith(projectPath + "/") ? path.slice(projectPath.length) : path;
+  const segments = path.split("/").filter(Boolean);
+  const route = segments.length && pages["/" + segments[segments.length - 1]] ? "/" + segments[segments.length - 1] : "/";
   const page = pages[route];
   const main = document.getElementById("main");
-  if (page) {
-    [...main.children].forEach(section => { section.hidden = section.id !== page; });
-    document.querySelectorAll(".nav-link").forEach(link => {
-      const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/+$/, "");
-      const active = linkPath.endsWith(route);
-      if (active) link.setAttribute("aria-current", "page");
-      else link.removeAttribute("aria-current");
-    });
-  }
+  if (!page) return;
+  [...main.children].forEach(section => { section.hidden = section.id !== page; });
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/+$/, "");
+    const linkSegments = linkPath.split("/").filter(Boolean);
+    const active = linkSegments[linkSegments.length - 1] === route.slice(1);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
 })();
 
 </script>
