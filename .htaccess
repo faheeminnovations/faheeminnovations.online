@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
+    Options -MultiViews
     RewriteEngine On
-    RewriteBase /faheeminnovations.online/
 
     # The shared brand favicon is served from the website root for every host.
     RewriteRule ^favicon\.svg$ - [L]
@@ -52,7 +52,8 @@
     RewriteRule ^text-to-image/(.*)$ ai-tools/text-to-image/$1 [NC,L]
     RewriteRule ^speech-text-ai/(.*)$ ai-tools/speech-text-ai/$1 [NC,L]
 
+    # The public website can be installed at the domain root or in a local subfolder.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(tools|services|process|contact|faq)/?$ index.html [L]
+    RewriteRule ^(?:tools|services|process|contact|faq)/?$ index.html [END]
 </IfModule>
